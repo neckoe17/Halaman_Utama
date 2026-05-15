@@ -157,7 +157,7 @@ kolom1_data = [
 
 kolom2_data = [
     {"label": "Kawasan Konservasi", "icon": "fa-solid fa-water", "url": "https://example.com/kkp"},
-    {"label": "Jenis Ikan", "icon": "fa-solid fa-fish", "url": "https://example.com/ikan-terlindung"},
+    {"label": "Jenis Ikan", "icon": "fa-solid fa-fish", "url": "https://dashboardapp-gwxpaouny5c3znvdudekvl.streamlit.app/"},
     {"label": "PNBP", "icon": "fa-solid fa-hand-holding-heart", "url": "https://example.com/berkelanjutan"},
     {"label": "SeaPark", "icon": "fa-solid fa-map-location-dot", "url": "https://seapark.kkp.go.id/"},
     {"label": "eSAJI", "icon": "fa-solid fa-map-location-dot", "url": "https://saji.kkp.go.id/"},
