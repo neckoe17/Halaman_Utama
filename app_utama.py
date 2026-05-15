@@ -204,7 +204,7 @@ def render_column(icon_list, column_title):
 # Header
 st.markdown("""
     <div class="dashboard-title">
-        <h1>🌊 Kawasan Konservasi & Dukman</h1>
+        <h1>🌊 Loka Pengelolaan Kelautan Pekanbaru</h1>
         <p>Dashboard terintegrasi untuk perlindungan, pemanfaatan, dan dukungan manajemen</p>
     </div>
 """, unsafe_allow_html=True)
