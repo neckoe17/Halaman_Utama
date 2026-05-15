@@ -249,13 +249,14 @@ kolom3_data = [
 # Untuk hotline WhatsApp, gunakan icon "fab fa-whatsapp" dan url wa.me/...
 # Urutan akan tampil dari kanan ke kiri (yang terakhir di list akan muncul paling kanan)
 social_media = [
-    {"label": "Hotline WA", "icon": "fab fa-whatsapp", "url": "https://wa.me/6281234567890"},  # Ganti dengan nomor WhatsApp Anda
-    {"label": "Instagram", "icon": "fab fa-instagram", "url": "https://instagram.com/akunanda"},
-    {"label": "Facebook", "icon": "fab fa-facebook-f", "url": "https://facebook.com/akunanda"},
-    {"label": "TikTok", "icon": "fab fa-tiktok", "url": "https://tiktok.com/@akunanda"},
-    {"label": "Twitter", "icon": "fab fa-twitter", "url": "https://twitter.com/akunanda"},
-    {"label": "YouTube", "icon": "fab fa-youtube", "url": "https://youtube.com/@akunanda"},
-    {"label": "Website", "icon": "fas fa-globe", "url": "https://contohwebsite.com"},
+    {"label": "Hotline WA", "icon": "fab fa-whatsapp", "url": "https://wa.me/628116666642"},  # Ganti dengan nomor WhatsApp Anda
+    {"label": "Instagram", "icon": "fab fa-instagram", "url": "https://www.instagram.com/lokapkpekanbaru?igsh=YTN3OGRvd3ZrZXF1
+"},
+    {"label": "Facebook", "icon": "fab fa-facebook-f", "url": "https://www.facebook.com/LPKPekanbaru.477456"},
+    {"label": "TikTok", "icon": "fab fa-tiktok", "url": "https://www.tiktok.com/@lokapkpekanbaru?_r=1&_t=ZS-966OrjUjiPx"},
+    {"label": "Twitter", "icon": "fab fa-twitter", "url": "https://x.com/lokapkpekanbaru?s=21"},
+    {"label": "YouTube", "icon": "fab fa-youtube", "url": "https://youtube.com/@lokapkpekanbaru?si=1n9Cvsn5Ic2BDORL"},
+    {"label": "Website", "icon": "fas fa-globe", "url": "https://ppid.kkp.go.id/upt/loka-pengelolaan-kelautan-pekanbaru/"},
 ]
 
 # ==================== FUNGSI RENDER KOLOM ====================
