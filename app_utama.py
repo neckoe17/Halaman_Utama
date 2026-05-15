@@ -159,13 +159,16 @@ kolom2_data = [
     {"label": "Kawasan Konservasi", "icon": "fa-solid fa-water", "url": "https://example.com/kkp"},
     {"label": "Jenis Ikan", "icon": "fa-solid fa-fish", "url": "https://example.com/ikan-terlindung"},
     {"label": "PNBP", "icon": "fa-solid fa-hand-holding-heart", "url": "https://example.com/berkelanjutan"},
+    {"label": "SeaPark", "icon": "fa-solid fa-map-location-dot", "url": "https://seapark.kkp.go.id/"},
+    {"label": "eSAJI", "icon": "fa-solid fa-map-location-dot", "url": "https://saji.kkp.go.id/"},
+    {"label": "eSultan.2.0", "icon": "fa-solid fa-map-location-dot", "url": "https://sites.google.com/view/pelayananlpkpekanbaru/pelayanan-jenis-ikan/non-esaji"},
     {"label": "SOP Pelayanan", "icon": "fa-solid fa-map-location-dot", "url": "https://example.com/zona"},
 ]
 
 kolom3_data = [
-    {"label": "Dukman Operasi", "icon": "fa-solid fa-ship", "url": "https://example.com/operasi"},
-    {"label": "Intelijen Maritim", "icon": "fa-solid fa-eye", "url": "https://example.com/intel"},
-    {"label": "Pengawasan Kapal", "icon": "fa-solid fa-radar", "url": "https://example.com/pengawasan"},
+    {"label": "Sipintar", "icon": "fa-solid fa-ship", "url": "https://sites.google.com/view/sipintar-lkkpn/home"},
+    {"label": "PPID LPK", "icon": "fa-solid fa-eye", "url": "https://ppid.kkp.go.id/upt/loka-pengelolaan-kelautan-pekanbaru/"},
+    {"label": "SIPPN", "icon": "fa-solid fa-radar", "url": "https://sippn.menpan.go.id/instansi/loka-pengelolaan-kelautan-pekanbaru-172582"},
     {"label": "Koordinasi Instansi", "icon": "fa-solid fa-handshake", "url": "https://example.com/koordinasi"},
     {"label": "Sistem Pelaporan", "icon": "fa-solid fa-file-alt", "url": "https://example.com/pelaporan"},
     {"label": "Emergency Response", "icon": "fa-solid fa-life-ring", "url": "https://example.com/emergency"},
