@@ -250,8 +250,7 @@ kolom3_data = [
 # Urutan akan tampil dari kanan ke kiri (yang terakhir di list akan muncul paling kanan)
 social_media = [
     {"label": "Hotline WA", "icon": "fab fa-whatsapp", "url": "https://wa.me/628116666642"},  # Ganti dengan nomor WhatsApp Anda
-    {"label": "Instagram", "icon": "fab fa-instagram", "url": "https://www.instagram.com/lokapkpekanbaru?igsh=YTN3OGRvd3ZrZXF1
-"},
+    {"label": "Instagram", "icon": "fab fa-instagram", "url": "https://www.instagram.com/lokapkpekanbaru?igsh=YTN3OGRvd3ZrZXF1"},
     {"label": "Facebook", "icon": "fab fa-facebook-f", "url": "https://www.facebook.com/LPKPekanbaru.477456"},
     {"label": "TikTok", "icon": "fab fa-tiktok", "url": "https://www.tiktok.com/@lokapkpekanbaru?_r=1&_t=ZS-966OrjUjiPx"},
     {"label": "Twitter", "icon": "fab fa-twitter", "url": "https://x.com/lokapkpekanbaru?s=21"},
