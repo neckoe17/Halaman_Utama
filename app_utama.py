@@ -125,10 +125,79 @@ custom_css = """
         .col-title { font-size: 1.1rem; }
     }
     
+    /* Container media sosial - horizontal dari kanan ke kiri */
+    .social-container {
+        display: flex;
+        justify-content: flex-end;
+        gap: 1rem;
+        margin: 2rem 1rem 1rem 1rem;
+        padding: 0.5rem 0;
+        flex-wrap: wrap;
+    }
+    
+    /* Ikon bulat */
+    .social-icon {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        background: #ffffff;
+        color: #2c3e50;
+        text-decoration: none;
+        font-size: 1.5rem;
+        transition: all 0.25s ease;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        border: 1px solid rgba(212, 175, 55, 0.2);
+    }
+    
+    .social-icon:hover {
+        transform: translateY(-3px);
+        background: #d4af37;
+        color: white;
+        border-color: #d4af37;
+        box-shadow: 0 8px 20px rgba(212, 175, 55, 0.2);
+    }
+    
+    /* Tooltip label saat hover */
+    .social-icon {
+        position: relative;
+    }
+    .social-icon:hover::after {
+        content: attr(title);
+        position: absolute;
+        bottom: -30px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: #1e2a3a;
+        color: white;
+        font-size: 0.7rem;
+        padding: 4px 8px;
+        border-radius: 20px;
+        white-space: nowrap;
+        font-family: 'Inter', sans-serif;
+        font-weight: 400;
+        pointer-events: none;
+        z-index: 10;
+    }
+    
+    @media (max-width: 768px) {
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            font-size: 1.2rem;
+        }
+        .social-container {
+            justify-content: center;
+            gap: 0.8rem;
+        }
+    }
+    
     /* Footer minimal */
     .footer {
         text-align: center;
-        margin-top: 3rem;
+        margin-top: 1rem;
         padding: 1rem;
         font-size: 0.75rem;
         color: #8a9aa8;
@@ -175,6 +244,20 @@ kolom3_data = [
     {"label": "Emergency Response", "icon": "fa-solid fa-life-ring", "url": "https://example.com/emergency"},
 ]
 
+# ==================== DATA MEDIA SOSIAL (MUDAH DIUPDATE) ====================
+# Format: {"label": "Nama", "icon": "fab fa-...", "url": "https://..."}
+# Untuk hotline WhatsApp, gunakan icon "fab fa-whatsapp" dan url wa.me/...
+# Urutan akan tampil dari kanan ke kiri (yang terakhir di list akan muncul paling kanan)
+social_media = [
+    {"label": "Hotline WA", "icon": "fab fa-whatsapp", "url": "https://wa.me/6281234567890"},  # Ganti dengan nomor WhatsApp Anda
+    {"label": "Instagram", "icon": "fab fa-instagram", "url": "https://instagram.com/akunanda"},
+    {"label": "Facebook", "icon": "fab fa-facebook-f", "url": "https://facebook.com/akunanda"},
+    {"label": "TikTok", "icon": "fab fa-tiktok", "url": "https://tiktok.com/@akunanda"},
+    {"label": "Twitter", "icon": "fab fa-twitter", "url": "https://twitter.com/akunanda"},
+    {"label": "YouTube", "icon": "fab fa-youtube", "url": "https://youtube.com/@akunanda"},
+    {"label": "Website", "icon": "fas fa-globe", "url": "https://contohwebsite.com"},
+]
+
 # ==================== FUNGSI RENDER KOLOM ====================
 def render_column(icon_list, column_title):
     """Menerima list ikon dan judul kolom, lalu render HTML/CSS melalui markdown"""
@@ -200,6 +283,22 @@ def render_column(icon_list, column_title):
         </div>
         """
         st.markdown(card_html, unsafe_allow_html=True)
+
+# ==================== FUNGSI RENDER MEDIA SOSIAL ====================
+def render_social_media(social_list):
+    """Menampilkan ikon media sosial bulat secara horizontal dari kanan ke kiri"""
+    # Balik urutan agar yang pertama di list (Hotline WA) tampil paling kanan
+    social_list_reversed = list(reversed(social_list))
+    
+    html_parts = ['<div class="social-container">']
+    for soc in social_list_reversed:
+        html_parts.append(f'''
+            <a href="{soc["url"]}" target="_blank" rel="noopener noreferrer" class="social-icon" title="{soc["label"]}">
+                <i class="{soc["icon"]}"></i>
+            </a>
+        ''')
+    html_parts.append('</div>')
+    st.markdown(''.join(html_parts), unsafe_allow_html=True)
 
 # ==================== TAMPILAN UTAMA ====================
 # Header
@@ -231,9 +330,12 @@ with col3:
         render_column(kolom3_data, "⚙️ Dukman (Dukungan Manajemen)")
         st.markdown('</div>', unsafe_allow_html=True)
 
-# Footer
+# ==================== MEDIA SOSIAL (SEBELUM FOOTER) ====================
+render_social_media(social_media)
+
+# ==================== FOOTER ====================
 st.markdown("""
     <div class="footer">
-        Dashboard Konservasi & Dukman — Data tautan dapat diperbarui di file app.py (bagian DATA IKON)
+        Dashboard Konservasi & Dukman — Data tautan dapat diperbarui di file app.py (bagian DATA IKON dan DATA MEDIA SOSIAL)
     </div>
 """, unsafe_allow_html=True)
