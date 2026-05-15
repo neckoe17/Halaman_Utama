@@ -2,7 +2,7 @@ import streamlit as st
 
 # ==================== KONFIGURASI HALAMAN ====================
 st.set_page_config(
-    page_title="Dashboard Konservasi & Dukman",
+    page_title="Loka Dalam Genggaman",
     page_icon="🌿",
     layout="wide",
     initial_sidebar_state="collapsed"
@@ -148,16 +148,18 @@ st.markdown(custom_css, unsafe_allow_html=True)
 
 kolom1_data = [
     {"label": "Perlindungan Spesies", "icon": "fa-solid fa-shield-hart", "url": "https://example.com/lindung-spesies"},
-    {"label": "Ekowisata", "icon": "fa-solid fa-tree", "url": "https://example.com/ekowisata"},
-    {"label": "Restorasi Ekosistem", "icon": "fa-solid fa-leaf", "url": "https://example.com/restorasi"},
-    {"label": "Penegakan Hukum", "icon": "fa-solid fa-gavel", "url": "https://example.com/hukum"},
+    {"label": "LokaBeOn", "icon": "fa-solid fa-tree", "url": "https://webgislokabeon2026.nonha-sdoc.workers.dev/"},
+    {"label": "Anambas Dalam Data", "icon": "fa-solid fa-leaf", "url": "https://linktr.ee/KonservasiAnambas"},
+    {"label": "Pieh Dalam Data", "icon": "fa-solid fa-gavel", "url": "https://linktr.ee/KonsevasiPulauPieh"},
+    {"label": "Landing Page KK Anambas", "icon": "fa-solid fa-gavel", "url": "https://sites.google.com/view/twp-anambas/home"},
+    {"label": "Landing Page KK Pieh", "icon": "fa-solid fa-gavel", "url": "https://sites.google.com/view/twppieh"},
 ]
 
 kolom2_data = [
-    {"label": "Kawasan Konservasi Laut", "icon": "fa-solid fa-water", "url": "https://example.com/kkp"},
-    {"label": "Jenis Ikan Terlindungi", "icon": "fa-solid fa-fish", "url": "https://example.com/ikan-terlindung"},
-    {"label": "Pemanfaatan Berkelanjutan", "icon": "fa-solid fa-hand-holding-heart", "url": "https://example.com/berkelanjutan"},
-    {"label": "Zona Pemanfaatan", "icon": "fa-solid fa-map-location-dot", "url": "https://example.com/zona"},
+    {"label": "Kawasan Konservasi", "icon": "fa-solid fa-water", "url": "https://example.com/kkp"},
+    {"label": "Jenis Ikan", "icon": "fa-solid fa-fish", "url": "https://example.com/ikan-terlindung"},
+    {"label": "PNBP", "icon": "fa-solid fa-hand-holding-heart", "url": "https://example.com/berkelanjutan"},
+    {"label": "SOP Pelayanan", "icon": "fa-solid fa-map-location-dot", "url": "https://example.com/zona"},
 ]
 
 kolom3_data = [
