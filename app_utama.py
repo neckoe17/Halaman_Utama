@@ -147,7 +147,7 @@ st.markdown(custom_css, unsafe_allow_html=True)
 # Setiap dict: {"label": "Nama Ikon", "icon": "fa-solid fa-...", "url": "https://..."}
 
 kolom1_data = [
-    {"label": "Perlindungan Spesies", "icon": "fa-solid fa-shield-hart", "url": "https://example.com/lindung-spesies"},
+    {"label": "Perlindungan Spesies", "icon": "fa-solid fa-shield-hart", "url": "https://lookerstudio.google.com/s/l64DGDDeTIQ"},
     {"label": "LokaBeOn", "icon": "fa-solid fa-tree", "url": "https://webgislokabeon2026.nonha-sdoc.workers.dev/"},
     {"label": "Anambas Dalam Data", "icon": "fa-solid fa-leaf", "url": "https://linktr.ee/KonservasiAnambas"},
     {"label": "Pieh Dalam Data", "icon": "fa-solid fa-gavel", "url": "https://linktr.ee/KonsevasiPulauPieh"},
