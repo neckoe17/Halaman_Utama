@@ -38,7 +38,7 @@ custom_css = f"""
     
     /* ----- BACKGROUND GAMBAR MRAP12 dengan OVERLAY (BASE64) ----- */
     .stApp {{
-        background: {bg_style} no-repeat center 35% fixed;
+        background: {bg_style} no-repeat center 55% fixed;
         background-size: 80%;
     }}
     
