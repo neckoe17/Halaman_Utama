@@ -11,14 +11,14 @@ st.set_page_config(
 )
 
 # ==================== MEMBACA GAMBAR BACKGROUND (BASE64) ====================
-background_image_path = Path("MRAP12.jpg")  # Pastikan file ada di folder yang sama
+background_image_path = Path("MRAP122.jpg")  # Pastikan file ada di folder yang sama
 background_base64 = ""
 
 if background_image_path.exists():
     with open(background_image_path, "rb") as img_file:
         background_base64 = base64.b64encode(img_file.read()).decode()
 else:
-    st.warning("File MRAP12.jpg tidak ditemukan. Gunakan background default.")
+    st.warning("File MRAP122.jpg tidak ditemukan. Gunakan background default.")
 
 # ==================== CSS KUSTOM  ====================
 # Gunakan base64 jika ada, fallback ke warna solid jika tidak
