@@ -8,7 +8,7 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
 )
 
-# ==================== CSS KUSTOM (ELEGAN & MINIMALIS) ====================
+# ==================== CSS KUSTOM  ====================
 custom_css = """
 <style>
     /* Reset & Font */
@@ -211,7 +211,7 @@ custom_css = """
 
 st.markdown(custom_css, unsafe_allow_html=True)
 
-# ==================== DATA IKON (MUDAH DIUPDATE) ====================
+# ==================== DATA IKON  ====================
 # Struktur: setiap kolom berisi list of dict
 # Setiap dict: {"label": "Nama Ikon", "icon": "fa-solid fa-...", "url": "https://..."}
 
