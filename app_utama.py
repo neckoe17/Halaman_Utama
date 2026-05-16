@@ -1,4 +1,6 @@
 import streamlit as st
+import base64
+from pathlib import Path
 
 # ==================== KONFIGURASI HALAMAN ====================
 st.set_page_config(
@@ -8,35 +10,51 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
 )
 
+# ==================== MEMBACA GAMBAR BACKGROUND (BASE64) ====================
+background_image_path = Path("MRAP12.jpg")  # Pastikan file ada di folder yang sama
+background_base64 = ""
+
+if background_image_path.exists():
+    with open(background_image_path, "rb") as img_file:
+        background_base64 = base64.b64encode(img_file.read()).decode()
+else:
+    st.warning("File MRAP12.jpg tidak ditemukan. Gunakan background default.")
+
 # ==================== CSS KUSTOM  ====================
-custom_css = """
+# Gunakan base64 jika ada, fallback ke warna solid jika tidak
+if background_base64:
+    bg_style = f"url('data:image/jpeg;base64,{background_base64}')"
+else:
+    bg_style = "linear-gradient(135deg, #0f2b3d, #1a4a6f)"  # fallback mewah
+
+custom_css = f"""
 <style>
     /* Reset & Font */
     @import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600&display=swap');
     
-    html, body, [class*="css"] {
+    html, body, [class*="css"] {{
         font-family: 'Inter', sans-serif;
-    }
+    }}
     
-    /* ----- BACKGROUND GAMBAR MRAP12 dengan OVERLAY ----- */
-    .stApp {
-        background: url('MRAP12.jpg') no-repeat center center fixed;
+    /* ----- BACKGROUND GAMBAR MRAP12 dengan OVERLAY (BASE64) ----- */
+    .stApp {{
+        background: {bg_style} no-repeat center center fixed;
         background-size: cover;
-    }
+    }}
     
-    /* Overlay gelap agar teks lebih kontras (sesuaikan opacity) */
-    .main {
-        background: rgba(0, 0, 0, 0.5);  /* semi-transparan hitam */
-        backdrop-filter: blur(2px);      /* efek mewah sedikit blur */
-    }
+    /* Overlay gelap agar teks lebih kontras */
+    .main {{
+        background: rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(2px);
+    }}
     
-    /* Judul utama - lebih mewah dengan emas */
-    .dashboard-title {
+    /* Judul utama - mewah */
+    .dashboard-title {{
         text-align: center;
         padding: 1rem 0 1rem 0;
         margin-bottom: 1.5rem;
-    }
-    .dashboard-title h1 {
+    }}
+    .dashboard-title h1 {{
         font-size: 2.4rem;
         font-weight: 700;
         background: linear-gradient(135deg, #F9D976, #F39F86, #D4AF37);
@@ -45,29 +63,26 @@ custom_css = """
         color: transparent;
         text-shadow: 2px 2px 12px rgba(0,0,0,0.3);
         letter-spacing: -0.3px;
-    }
-    .dashboard-title p {
+    }}
+    .dashboard-title p {{
         color: #f0f0f0;
         font-size: 0.95rem;
         margin-top: -0.5rem;
         font-weight: 500;
         text-shadow: 1px 1px 4px rgba(0,0,0,0.5);
-        opacity: 0.95;
-    }
+    }}
     
-    /* Container kolom - card mewah dengan transparan */
-    .section-card {
-        background: rgba(20, 20, 30, 0.75);  /* gelap mewah transparan */
+    /* Card mewah transparan */
+    .section-card {{
+        background: rgba(20, 20, 30, 0.75);
         backdrop-filter: blur(8px);
         border-radius: 32px;
         padding: 1.2rem 1rem;
         box-shadow: 0 15px 35px rgba(0,0,0,0.2), 0 0 0 1px rgba(212,175,55,0.2);
-        transition: all 0.2s ease;
         height: 100%;
-    }
+    }}
     
-    /* Judul kolom */
-    .col-title {
+    .col-title {{
         font-size: 1.3rem;
         font-weight: 600;
         text-align: center;
@@ -77,12 +92,10 @@ custom_css = """
         display: inline-block;
         width: auto;
         color: #F5E7B2;
-        letter-spacing: -0.3px;
         text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
-    }
+    }}
     
-    /* Kartu ikon - glassmorphism */
-    .icon-card {
+    .icon-card {{
         background: rgba(255,255,255,0.1);
         backdrop-filter: blur(4px);
         border-radius: 24px;
@@ -90,67 +103,55 @@ custom_css = """
         margin: 0.8rem 0;
         text-align: center;
         transition: all 0.25s ease;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
         border: 1px solid rgba(212,175,55,0.3);
         cursor: pointer;
-    }
-    .icon-card:hover {
+    }}
+    .icon-card:hover {{
         transform: translateY(-4px);
         background: rgba(212,175,55,0.2);
         border-color: #D4AF37;
-        box-shadow: 0 15px 30px -12px rgba(0,0,0,0.3);
-    }
-    
-    /* Link */
-    .icon-card a {
+    }}
+    .icon-card a {{
         text-decoration: none;
         display: flex;
         flex-direction: column;
         align-items: center;
         gap: 0.7rem;
         color: #FFFFFF;
-    }
-    
-    /* Ikon */
-    .icon-card i {
+    }}
+    .icon-card i {{
         font-size: 2.6rem;
         color: #D4AF37;
         transition: transform 0.2s;
         text-shadow: 0 0 5px rgba(0,0,0,0.5);
-    }
-    .icon-card:hover i {
+    }}
+    .icon-card:hover i {{
         transform: scale(1.05);
         color: #F3D572;
-    }
-    
-    /* Label teks */
-    .icon-label {
+    }}
+    .icon-label {{
         font-weight: 500;
         font-size: 0.85rem;
         letter-spacing: 0.3px;
         color: #FAF7F0;
         text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
-    }
+    }}
     
-    /* Responsive */
-    @media (max-width: 768px) {
-        .icon-card i { font-size: 2rem; }
-        .icon-label { font-size: 0.75rem; }
-        .col-title { font-size: 1.1rem; }
-    }
+    @media (max-width: 768px) {{
+        .icon-card i {{ font-size: 2rem; }}
+        .icon-label {{ font-size: 0.75rem; }}
+        .col-title {{ font-size: 1.1rem; }}
+    }}
     
-    /* Container media sosial - horizontal kanan */
-    .social-container {
+    /* Media sosial */
+    .social-container {{
         display: flex;
         justify-content: flex-end;
         gap: 1.2rem;
         margin: 2rem 1rem 1rem 1rem;
-        padding: 0.5rem 0;
         flex-wrap: wrap;
-    }
-    
-    /* Ikon bulat - mewah */
-    .social-icon {
+    }}
+    .social-icon {{
         display: inline-flex;
         align-items: center;
         justify-content: center;
@@ -163,25 +164,14 @@ custom_css = """
         text-decoration: none;
         font-size: 1.6rem;
         transition: all 0.25s ease;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.2);
         border: 1px solid rgba(212,175,55,0.5);
-    }
-    .social-icon i {
-        line-height: 1;
-    }
-    .social-icon:hover {
+    }}
+    .social-icon:hover {{
         transform: translateY(-4px);
         background: #D4AF37;
         color: #1e2a3a;
-        border-color: #D4AF37;
-        box-shadow: 0 10px 20px rgba(212,175,55,0.4);
-    }
-    
-    /* Tooltip */
-    .social-icon {
-        position: relative;
-    }
-    .social-icon:hover::after {
+    }}
+    .social-icon:hover::after {{
         content: attr(title);
         position: absolute;
         bottom: -34px;
@@ -190,44 +180,32 @@ custom_css = """
         background: #0f2b3d;
         color: #D4AF37;
         font-size: 0.75rem;
-        font-weight: 600;
         padding: 4px 10px;
         border-radius: 30px;
         white-space: nowrap;
         font-family: 'Inter', sans-serif;
         pointer-events: none;
-        z-index: 10;
-        box-shadow: 0 2px 6px rgba(0,0,0,0.3);
-    }
+    }}
+    .social-icon {{
+        position: relative;
+    }}
+    @media (max-width: 768px) {{
+        .social-icon {{ width: 44px; height: 44px; font-size: 1.4rem; }}
+        .social-container {{ justify-content: center; }}
+    }}
     
-    @media (max-width: 768px) {
-        .social-icon {
-            width: 44px;
-            height: 44px;
-            font-size: 1.4rem;
-        }
-        .social-container {
-            justify-content: center;
-            gap: 1rem;
-        }
-    }
-    
-    /* Footer */
-    .footer {
+    .footer {{
         text-align: center;
         margin-top: 1rem;
         padding: 1rem;
         font-size: 0.75rem;
         color: #DDD;
         border-top: 1px solid rgba(212,175,55,0.4);
-        text-shadow: 1px 1px 2px black;
         background: rgba(0,0,0,0.3);
         border-radius: 20px;
         backdrop-filter: blur(4px);
-    }
+    }}
 </style>
-
-<!-- Font Awesome 6 -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 """
 
@@ -263,7 +241,6 @@ kolom3_data = [
     {"label": "Emergency Response", "icon": "fa-solid fa-life-ring", "url": "https://example.com/emergency"},
 ]
 
-# ==================== DATA MEDIA SOSIAL ====================
 social_media = [
     {"label": "Hotline WA", "icon": "fab fa-whatsapp", "url": "https://wa.me/628116666642"},
     {"label": "Instagram", "icon": "fab fa-instagram", "url": "https://www.instagram.com/lokapkpekanbaru?igsh=YTN3OGRvd3ZrZXF1"},
@@ -281,16 +258,12 @@ def render_column(icon_list, column_title):
             <div class="col-title">{column_title}</div>
         </div>
     """, unsafe_allow_html=True)
-    
     for item in icon_list:
-        label = item["label"]
-        icon_class = item["icon"]
-        url = item["url"]
         card_html = f"""
         <div class="icon-card">
-            <a href="{url}" target="_blank" rel="noopener noreferrer">
-                <i class="{icon_class}"></i>
-                <span class="icon-label">{label}</span>
+            <a href="{item['url']}" target="_blank" rel="noopener noreferrer">
+                <i class="{item['icon']}"></i>
+                <span class="icon-label">{item['label']}</span>
             </a>
         </div>
         """
@@ -337,10 +310,8 @@ with col3:
         render_column(kolom3_data, "⚙️ Dukman (Dukungan Manajemen)")
         st.markdown('</div>', unsafe_allow_html=True)
 
-# ==================== MEDIA SOSIAL ====================
 render_social_media(social_media)
 
-# ==================== FOOTER ====================
 st.markdown("""
     <div class="footer">
         Dashboard Konservasi & Dukman — Data tautan dapat diperbarui di file app.py (bagian DATA IKON dan DATA MEDIA SOSIAL)
