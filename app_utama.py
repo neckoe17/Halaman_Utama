@@ -18,12 +18,19 @@ custom_css = """
         font-family: 'Inter', sans-serif;
     }
     
-    /* Background utama - putih bersih dengan aksen gold */
-    .main {
-        background: linear-gradient(135deg, #f9fafb 0%, #ffffff 100%);
+    /* ----- BACKGROUND GAMBAR MRAP12 dengan OVERLAY ----- */
+    .stApp {
+        background: url('MRAP12.jpg') no-repeat center center fixed;
+        background-size: cover;
     }
     
-    /* Judul utama - Lebih kontras */
+    /* Overlay gelap agar teks lebih kontras (sesuaikan opacity) */
+    .main {
+        background: rgba(0, 0, 0, 0.5);  /* semi-transparan hitam */
+        backdrop-filter: blur(2px);      /* efek mewah sedikit blur */
+    }
+    
+    /* Judul utama - lebih mewah dengan emas */
     .dashboard-title {
         text-align: center;
         padding: 1rem 0 1rem 0;
@@ -32,30 +39,30 @@ custom_css = """
     .dashboard-title h1 {
         font-size: 2.4rem;
         font-weight: 700;
-        background: linear-gradient(135deg, #0f2b3d, #1a4a6f, #d4af37);
+        background: linear-gradient(135deg, #F9D976, #F39F86, #D4AF37);
         -webkit-background-clip: text;
         background-clip: text;
         color: transparent;
-        text-shadow: 2px 2px 8px rgba(0,0,0,0.1);
+        text-shadow: 2px 2px 12px rgba(0,0,0,0.3);
         letter-spacing: -0.3px;
     }
     .dashboard-title p {
-        color: #2c3e50;
+        color: #f0f0f0;
         font-size: 0.95rem;
         margin-top: -0.5rem;
         font-weight: 500;
-        opacity: 0.85;
+        text-shadow: 1px 1px 4px rgba(0,0,0,0.5);
+        opacity: 0.95;
     }
     
-    /* Container kolom - luxury card effect */
+    /* Container kolom - card mewah dengan transparan */
     .section-card {
-        background: rgba(255,255,255,0.85);
-        backdrop-filter: blur(2px);
+        background: rgba(20, 20, 30, 0.75);  /* gelap mewah transparan */
+        backdrop-filter: blur(8px);
         border-radius: 32px;
         padding: 1.2rem 1rem;
-        box-shadow: 0 8px 20px rgba(0,0,0,0.02), 0 2px 6px rgba(0,0,0,0.03);
+        box-shadow: 0 15px 35px rgba(0,0,0,0.2), 0 0 0 1px rgba(212,175,55,0.2);
         transition: all 0.2s ease;
-        border: 1px solid rgba(212, 175, 55, 0.25);
         height: 100%;
     }
     
@@ -66,51 +73,54 @@ custom_css = """
         text-align: center;
         margin-bottom: 1.8rem;
         padding-bottom: 0.6rem;
-        border-bottom: 2px solid #d4af37;
+        border-bottom: 2px solid #D4AF37;
         display: inline-block;
         width: auto;
-        color: #1e3a4d;
+        color: #F5E7B2;
         letter-spacing: -0.3px;
+        text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
     }
     
-    /* Kartu ikon */
+    /* Kartu ikon - glassmorphism */
     .icon-card {
-        background: white;
+        background: rgba(255,255,255,0.1);
+        backdrop-filter: blur(4px);
         border-radius: 24px;
         padding: 1rem 0.5rem;
         margin: 0.8rem 0;
         text-align: center;
         transition: all 0.25s ease;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.02);
-        border: 1px solid #eef2f5;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        border: 1px solid rgba(212,175,55,0.3);
         cursor: pointer;
     }
     .icon-card:hover {
         transform: translateY(-4px);
-        box-shadow: 0 15px 30px -12px rgba(0,0,0,0.1);
-        border-color: rgba(212, 175, 55, 0.5);
-        background: #fefef7;
+        background: rgba(212,175,55,0.2);
+        border-color: #D4AF37;
+        box-shadow: 0 15px 30px -12px rgba(0,0,0,0.3);
     }
     
-    /* Link (seluruh area kartu) */
+    /* Link */
     .icon-card a {
         text-decoration: none;
         display: flex;
         flex-direction: column;
         align-items: center;
         gap: 0.7rem;
-        color: #2c3e50;
+        color: #FFFFFF;
     }
     
-    /* Gaya ikon */
+    /* Ikon */
     .icon-card i {
         font-size: 2.6rem;
-        color: #d4af37;
+        color: #D4AF37;
         transition: transform 0.2s;
+        text-shadow: 0 0 5px rgba(0,0,0,0.5);
     }
     .icon-card:hover i {
         transform: scale(1.05);
-        color: #b88d2c;
+        color: #F3D572;
     }
     
     /* Label teks */
@@ -118,17 +128,18 @@ custom_css = """
         font-weight: 500;
         font-size: 0.85rem;
         letter-spacing: 0.3px;
-        color: #3a5468;
+        color: #FAF7F0;
+        text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
     }
     
-    /* Responsive: kolom Streamlit otomatis */
+    /* Responsive */
     @media (max-width: 768px) {
         .icon-card i { font-size: 2rem; }
         .icon-label { font-size: 0.75rem; }
         .col-title { font-size: 1.1rem; }
     }
     
-    /* Container media sosial - horizontal dari kanan ke kiri */
+    /* Container media sosial - horizontal kanan */
     .social-container {
         display: flex;
         justify-content: flex-end;
@@ -138,7 +149,7 @@ custom_css = """
         flex-wrap: wrap;
     }
     
-    /* Ikon bulat - perbaikan tampilan */
+    /* Ikon bulat - mewah */
     .social-icon {
         display: inline-flex;
         align-items: center;
@@ -146,26 +157,27 @@ custom_css = """
         width: 52px;
         height: 52px;
         border-radius: 50%;
-        background: #ffffff;
-        color: #2c3e50;
+        background: rgba(0,0,0,0.6);
+        backdrop-filter: blur(4px);
+        color: #D4AF37;
         text-decoration: none;
         font-size: 1.6rem;
         transition: all 0.25s ease;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-        border: 1px solid rgba(212, 175, 55, 0.3);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        border: 1px solid rgba(212,175,55,0.5);
     }
     .social-icon i {
         line-height: 1;
     }
     .social-icon:hover {
         transform: translateY(-4px);
-        background: #d4af37;
-        color: white;
-        border-color: #d4af37;
-        box-shadow: 0 10px 20px rgba(212, 175, 55, 0.25);
+        background: #D4AF37;
+        color: #1e2a3a;
+        border-color: #D4AF37;
+        box-shadow: 0 10px 20px rgba(212,175,55,0.4);
     }
     
-    /* Tooltip label saat hover */
+    /* Tooltip */
     .social-icon {
         position: relative;
     }
@@ -175,17 +187,17 @@ custom_css = """
         bottom: -34px;
         left: 50%;
         transform: translateX(-50%);
-        background: #1e2a3a;
-        color: white;
+        background: #0f2b3d;
+        color: #D4AF37;
         font-size: 0.75rem;
-        font-weight: 500;
+        font-weight: 600;
         padding: 4px 10px;
         border-radius: 30px;
         white-space: nowrap;
         font-family: 'Inter', sans-serif;
         pointer-events: none;
         z-index: 10;
-        box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+        box-shadow: 0 2px 6px rgba(0,0,0,0.3);
     }
     
     @media (max-width: 768px) {
@@ -198,30 +210,30 @@ custom_css = """
             justify-content: center;
             gap: 1rem;
         }
-        .social-icon:hover::after {
-            font-size: 0.7rem;
-            bottom: -30px;
-        }
     }
     
-    /* Footer minimal */
+    /* Footer */
     .footer {
         text-align: center;
         margin-top: 1rem;
         padding: 1rem;
         font-size: 0.75rem;
-        color: #8a9aa8;
-        border-top: 1px solid #e9ecef;
+        color: #DDD;
+        border-top: 1px solid rgba(212,175,55,0.4);
+        text-shadow: 1px 1px 2px black;
+        background: rgba(0,0,0,0.3);
+        border-radius: 20px;
+        backdrop-filter: blur(4px);
     }
 </style>
 
-<!-- Font Awesome 6 (Free) -->
+<!-- Font Awesome 6 -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 """
 
 st.markdown(custom_css, unsafe_allow_html=True)
 
-# ==================== DATA IKON  ====================
+# ==================== DATA IKON (tidak berubah) ====================
 kolom1_data = [
     {"label": "ResPat BUAYA", "icon": "fa-solid fa-tree", "url": "https://lookerstudio.google.com/s/l64DGDDeTIQ"},
     {"label": "LokaBeOn", "icon": "fa-solid fa-tree", "url": "https://webgislokabeon2026.nonha-sdoc.workers.dev/"},
@@ -262,7 +274,7 @@ social_media = [
     {"label": "Website", "icon": "fas fa-globe", "url": "https://ppid.kkp.go.id/upt/loka-pengelolaan-kelautan-pekanbaru/"},
 ]
 
-# ==================== FUNGSI RENDER KOLOM ====================
+# ==================== FUNGSI RENDER ====================
 def render_column(icon_list, column_title):
     st.markdown(f"""
         <div style="text-align: center;">
@@ -284,15 +296,10 @@ def render_column(icon_list, column_title):
         """
         st.markdown(card_html, unsafe_allow_html=True)
 
-# ==================== FUNGSI RENDER MEDIA SOSIAL ====================
 def render_social_media(social_list):
-    """Menampilkan ikon media sosial bulat secara horizontal dari kanan ke kiri."""
-    # Balik urutan agar yang pertama di list (Hotline WA) tampil paling kanan
     social_list_reversed = list(reversed(social_list))
-    
     html_parts = ['<div class="social-container">']
     for soc in social_list_reversed:
-        # Escape double quotes di URL (meski sebenarnya aman, ini untuk jaga-jaga)
         url = soc["url"].replace('"', '&quot;')
         html_parts.append(f'''
             <a href="{url}" target="_blank" rel="noopener noreferrer" class="social-icon" title="{soc['label']}">
