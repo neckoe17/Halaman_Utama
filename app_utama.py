@@ -45,7 +45,7 @@ custom_css = f"""
     /* Overlay gelap agar teks lebih kontras */
     .main {{
         background: rgba(0, 0, 0, 0.5);
-        backdrop-filter: blur(2px);
+        backdrop-filter: blur(8px);
     }}
     
     /* Judul utama - mewah */
