@@ -235,7 +235,7 @@ kolom2_data = [
 kolom3_data = [
     {"label": "Sipintar", "icon": "fa-solid fa-ship", "url": "https://sites.google.com/view/sipintar-lkkpn/home"},
     {"label": "PPID LPK", "icon": "fa-solid fa-eye", "url": "https://ppid.kkp.go.id/upt/loka-pengelolaan-kelautan-pekanbaru/"},
-    {"label": "SIPPN", "icon": "fa-solid fa-radar", "url": "https://sippn.menpan.go.id/instansi/loka-pengelolaan-kelautan-pekanbaru-172582"},
+    {"label": "SIPPN", "icon": "fa-solid fa-eye", "url": "https://sippn.menpan.go.id/instansi/loka-pengelolaan-kelautan-pekanbaru-172582"},
     {"label": "Koordinasi Instansi", "icon": "fa-solid fa-handshake", "url": "https://example.com/koordinasi"},
     {"label": "Sistem Pelaporan", "icon": "fa-solid fa-file-alt", "url": "https://example.com/pelaporan"},
     {"label": "Emergency Response", "icon": "fa-solid fa-life-ring", "url": "https://example.com/emergency"},
