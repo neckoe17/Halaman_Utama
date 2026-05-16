@@ -11,7 +11,7 @@ st.set_page_config(
 )
 
 # ==================== MEMBACA GAMBAR BACKGROUND (BASE64) ====================
-background_image_path = Path("MRAP12.jpg")
+background_image_path = Path("MRAP12.jpg")  # Pastikan file ada di folder yang sama
 background_base64 = ""
 
 if background_image_path.exists():
@@ -20,47 +20,35 @@ if background_image_path.exists():
 else:
     st.warning("File MRAP12.jpg tidak ditemukan. Gunakan background default.")
 
-# ==================== CSS KUSTOM ====================
+# ==================== CSS KUSTOM  ====================
+# Gunakan base64 jika ada, fallback ke warna solid jika tidak
 if background_base64:
     bg_style = f"url('data:image/jpeg;base64,{background_base64}')"
 else:
-    bg_style = "linear-gradient(135deg, #0f2b3d, #1a4a6f)"
+    bg_style = "linear-gradient(135deg, #0f2b3d, #1a4a6f)"  # fallback mewah
 
 custom_css = f"""
 <style>
+    /* Reset & Font */
     @import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600&display=swap');
     
     html, body, [class*="css"] {{
         font-family: 'Inter', sans-serif;
     }}
     
-    /* Background dengan blur total menggunakan pseudo-element */
+    /* ----- BACKGROUND GAMBAR MRAP12 dengan OVERLAY (BASE64) ----- */
     .stApp {{
-        position: relative;
         background: {bg_style} no-repeat center center fixed;
         background-size: cover;
     }}
     
-    .stApp::before {{
-        content: "";
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        backdrop-filter: blur(12px);
-        background: rgba(0, 0, 0, 0.4);
-        z-index: 0;
-        pointer-events: none;
+    /* Overlay gelap agar teks lebih kontras */
+    .main {{
+        background: rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(8px);
     }}
     
-    /* Konten di atas blur */
-    .main > div {{
-        position: relative;
-        z-index: 1;
-    }}
-    
-    /* Judul utama */
+    /* Judul utama - mewah */
     .dashboard-title {{
         text-align: center;
         padding: 1rem 0 1rem 0;
@@ -177,7 +165,6 @@ custom_css = f"""
         font-size: 1.6rem;
         transition: all 0.25s ease;
         border: 1px solid rgba(212,175,55,0.5);
-        position: relative;
     }}
     .social-icon:hover {{
         transform: translateY(-4px);
@@ -198,6 +185,9 @@ custom_css = f"""
         white-space: nowrap;
         font-family: 'Inter', sans-serif;
         pointer-events: none;
+    }}
+    .social-icon {{
+        position: relative;
     }}
     @media (max-width: 768px) {{
         .social-icon {{ width: 44px; height: 44px; font-size: 1.4rem; }}
@@ -221,7 +211,7 @@ custom_css = f"""
 
 st.markdown(custom_css, unsafe_allow_html=True)
 
-# ==================== DATA IKON ====================
+# ==================== DATA IKON (tidak berubah) ====================
 kolom1_data = [
     {"label": "ResPat BUAYA", "icon": "fa-solid fa-tree", "url": "https://lookerstudio.google.com/s/l64DGDDeTIQ"},
     {"label": "LokaBeOn", "icon": "fa-solid fa-tree", "url": "https://webgislokabeon2026.nonha-sdoc.workers.dev/"},
