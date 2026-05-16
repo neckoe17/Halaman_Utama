@@ -11,7 +11,7 @@ st.set_page_config(
 )
 
 # ==================== MEMBACA GAMBAR BACKGROUND (BASE64) ====================
-background_image_path = Path("MRAP12.jpg")  # Pastikan file ada di folder yang sama
+background_image_path = Path("MRAP12.jpg")
 background_base64 = ""
 
 if background_image_path.exists():
@@ -21,34 +21,46 @@ else:
     st.warning("File MRAP12.jpg tidak ditemukan. Gunakan background default.")
 
 # ==================== CSS KUSTOM  ====================
-# Gunakan base64 jika ada, fallback ke warna solid jika tidak
 if background_base64:
     bg_style = f"url('data:image/jpeg;base64,{background_base64}')"
 else:
-    bg_style = "linear-gradient(135deg, #0f2b3d, #1a4a6f)"  # fallback mewah
+    bg_style = "linear-gradient(135deg, #e0eafc, #cfdef3)"
 
 custom_css = f"""
 <style>
-    /* Reset & Font */
-    @import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;600;700&display=swap');
     
     html, body, [class*="css"] {{
         font-family: 'Inter', sans-serif;
     }}
     
-    /* ----- BACKGROUND GAMBAR MRAP12 dengan OVERLAY (BASE64) ----- */
+    /* Background gambar dengan efek blur & redup */
     .stApp {{
         background: {bg_style} no-repeat center center fixed;
         background-size: cover;
+        position: relative;
     }}
     
-    /* Overlay gelap agar teks lebih kontras */
-    .main {{
-        background: rgba(0, 0, 0, 0.5);
-        backdrop-filter: blur(2px);
+    .stApp::before {{
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        backdrop-filter: blur(10px);
+        background: rgba(0, 0, 0, 0.3);  /* redupkan gambar */
+        z-index: 0;
+        pointer-events: none;
     }}
     
-    /* Judul utama - mewah */
+    /* Semua konten di atas overlay */
+    .main > div {{
+        position: relative;
+        z-index: 1;
+    }}
+    
+    /* Judul utama - gelap elegan */
     .dashboard-title {{
         text-align: center;
         padding: 1rem 0 1rem 0;
@@ -57,59 +69,68 @@ custom_css = f"""
     .dashboard-title h1 {{
         font-size: 2.4rem;
         font-weight: 700;
-        background: linear-gradient(135deg, #F9D976, #F39F86, #D4AF37);
+        background: linear-gradient(135deg, #1A2A3A, #2C3E50, #D4AF37);
         -webkit-background-clip: text;
         background-clip: text;
         color: transparent;
-        text-shadow: 2px 2px 12px rgba(0,0,0,0.3);
+        text-shadow: none;
         letter-spacing: -0.3px;
     }}
     .dashboard-title p {{
-        color: #f0f0f0;
+        color: #1A2A3A;
         font-size: 0.95rem;
         margin-top: -0.5rem;
         font-weight: 500;
-        text-shadow: 1px 1px 4px rgba(0,0,0,0.5);
+        background: rgba(255,255,255,0.5);
+        display: inline-block;
+        padding: 0.2rem 1rem;
+        border-radius: 40px;
+        backdrop-filter: blur(4px);
     }}
     
-    /* Card mewah transparan */
+    /* Card - putih transparan, teks gelap */
     .section-card {{
-        background: rgba(20, 20, 30, 0.75);
+        background: rgba(255, 255, 255, 0.75);
         backdrop-filter: blur(8px);
         border-radius: 32px;
         padding: 1.2rem 1rem;
-        box-shadow: 0 15px 35px rgba(0,0,0,0.2), 0 0 0 1px rgba(212,175,55,0.2);
+        box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        border: 1px solid rgba(212,175,55,0.3);
         height: 100%;
+        transition: all 0.2s;
     }}
     
+    /* Judul kolom */
     .col-title {{
         font-size: 1.3rem;
-        font-weight: 600;
+        font-weight: 700;
         text-align: center;
         margin-bottom: 1.8rem;
         padding-bottom: 0.6rem;
         border-bottom: 2px solid #D4AF37;
         display: inline-block;
         width: auto;
-        color: #F5E7B2;
-        text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        color: #1A2A3A;
+        letter-spacing: -0.2px;
     }}
     
+    /* Kartu ikon - putih solid sedikit transparan */
     .icon-card {{
-        background: rgba(255,255,255,0.1);
-        backdrop-filter: blur(4px);
+        background: rgba(255, 255, 255, 0.9);
         border-radius: 24px;
         padding: 1rem 0.5rem;
         margin: 0.8rem 0;
         text-align: center;
         transition: all 0.25s ease;
-        border: 1px solid rgba(212,175,55,0.3);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        border: 1px solid rgba(212,175,55,0.2);
         cursor: pointer;
     }}
     .icon-card:hover {{
         transform: translateY(-4px);
-        background: rgba(212,175,55,0.2);
+        background: white;
         border-color: #D4AF37;
+        box-shadow: 0 12px 24px rgba(0,0,0,0.1);
     }}
     .icon-card a {{
         text-decoration: none;
@@ -117,33 +138,32 @@ custom_css = f"""
         flex-direction: column;
         align-items: center;
         gap: 0.7rem;
-        color: #FFFFFF;
+        color: #2C3E50;
     }}
     .icon-card i {{
         font-size: 2.6rem;
         color: #D4AF37;
         transition: transform 0.2s;
-        text-shadow: 0 0 5px rgba(0,0,0,0.5);
     }}
     .icon-card:hover i {{
         transform: scale(1.05);
-        color: #F3D572;
+        color: #B8860B;
     }}
     .icon-label {{
-        font-weight: 500;
+        font-weight: 600;
         font-size: 0.85rem;
         letter-spacing: 0.3px;
-        color: #FAF7F0;
-        text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        color: #1E2A3A;
     }}
     
+    /* Responsive */
     @media (max-width: 768px) {{
         .icon-card i {{ font-size: 2rem; }}
         .icon-label {{ font-size: 0.75rem; }}
         .col-title {{ font-size: 1.1rem; }}
     }}
     
-    /* Media sosial */
+    /* Media sosial - ikon bulat dengan latar putih transparan */
     .social-container {{
         display: flex;
         justify-content: flex-end;
@@ -158,7 +178,7 @@ custom_css = f"""
         width: 52px;
         height: 52px;
         border-radius: 50%;
-        background: rgba(0,0,0,0.6);
+        background: rgba(255,255,255,0.8);
         backdrop-filter: blur(4px);
         color: #D4AF37;
         text-decoration: none;
@@ -169,7 +189,8 @@ custom_css = f"""
     .social-icon:hover {{
         transform: translateY(-4px);
         background: #D4AF37;
-        color: #1e2a3a;
+        color: white;
+        border-color: #D4AF37;
     }}
     .social-icon:hover::after {{
         content: attr(title);
@@ -177,7 +198,7 @@ custom_css = f"""
         bottom: -34px;
         left: 50%;
         transform: translateX(-50%);
-        background: #0f2b3d;
+        background: #1A2A3A;
         color: #D4AF37;
         font-size: 0.75rem;
         padding: 4px 10px;
@@ -194,16 +215,17 @@ custom_css = f"""
         .social-container {{ justify-content: center; }}
     }}
     
+    /* Footer */
     .footer {{
         text-align: center;
         margin-top: 1rem;
         padding: 1rem;
         font-size: 0.75rem;
-        color: #DDD;
+        color: #1A2A3A;
         border-top: 1px solid rgba(212,175,55,0.4);
-        background: rgba(0,0,0,0.3);
-        border-radius: 20px;
+        background: rgba(255,255,255,0.5);
         backdrop-filter: blur(4px);
+        border-radius: 20px;
     }}
 </style>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -211,7 +233,7 @@ custom_css = f"""
 
 st.markdown(custom_css, unsafe_allow_html=True)
 
-# ==================== DATA IKON (tidak berubah) ====================
+# ==================== DATA IKON (sama seperti sebelumnya) ====================
 kolom1_data = [
     {"label": "ResPat BUAYA", "icon": "fa-solid fa-tree", "url": "https://lookerstudio.google.com/s/l64DGDDeTIQ"},
     {"label": "LokaBeOn", "icon": "fa-solid fa-tree", "url": "https://webgislokabeon2026.nonha-sdoc.workers.dev/"},
@@ -235,7 +257,7 @@ kolom2_data = [
 kolom3_data = [
     {"label": "Sipintar", "icon": "fa-solid fa-ship", "url": "https://sites.google.com/view/sipintar-lkkpn/home"},
     {"label": "PPID LPK", "icon": "fa-solid fa-eye", "url": "https://ppid.kkp.go.id/upt/loka-pengelolaan-kelautan-pekanbaru/"},
-    {"label": "SIPPN", "icon": "fa-solid fa-radar", "url": "https://sippn.menpan.go.id/instansi/loka-pengelolaan-kelautan-pekanbaru-172582"},
+    {"label": "SIPPN", "icon": "fa-solid fa-eye", "url": "https://sippn.menpan.go.id/instansi/loka-pengelolaan-kelautan-pekanbaru-172582"},
     {"label": "Koordinasi Instansi", "icon": "fa-solid fa-handshake", "url": "https://example.com/koordinasi"},
     {"label": "Sistem Pelaporan", "icon": "fa-solid fa-file-alt", "url": "https://example.com/pelaporan"},
     {"label": "Emergency Response", "icon": "fa-solid fa-life-ring", "url": "https://example.com/emergency"},
