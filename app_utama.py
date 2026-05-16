@@ -23,25 +23,28 @@ custom_css = """
         background: linear-gradient(135deg, #f9fafb 0%, #ffffff 100%);
     }
     
-    /* Judul utama */
+    /* Judul utama - Lebih kontras */
     .dashboard-title {
         text-align: center;
         padding: 1rem 0 1rem 0;
         margin-bottom: 1.5rem;
     }
     .dashboard-title h1 {
-        font-size: 2.2rem;
-        font-weight: 600;
-        background: linear-gradient(120deg, #1e2a3a, #2c3e50);
+        font-size: 2.4rem;
+        font-weight: 700;
+        background: linear-gradient(135deg, #0f2b3d, #1a4a6f, #d4af37);
         -webkit-background-clip: text;
         background-clip: text;
         color: transparent;
-        letter-spacing: -0.5px;
+        text-shadow: 2px 2px 8px rgba(0,0,0,0.1);
+        letter-spacing: -0.3px;
     }
     .dashboard-title p {
-        color: #5d6e7e;
-        font-size: 0.9rem;
+        color: #2c3e50;
+        font-size: 0.95rem;
         margin-top: -0.5rem;
+        font-weight: 500;
+        opacity: 0.85;
     }
     
     /* Container kolom - luxury card effect */
@@ -52,7 +55,7 @@ custom_css = """
         padding: 1.2rem 1rem;
         box-shadow: 0 8px 20px rgba(0,0,0,0.02), 0 2px 6px rgba(0,0,0,0.03);
         transition: all 0.2s ease;
-        border: 1px solid rgba(212, 175, 55, 0.15);
+        border: 1px solid rgba(212, 175, 55, 0.25);
         height: 100%;
     }
     
@@ -66,7 +69,7 @@ custom_css = """
         border-bottom: 2px solid #d4af37;
         display: inline-block;
         width: auto;
-        color: #2c3e4e;
+        color: #1e3a4d;
         letter-spacing: -0.3px;
     }
     
@@ -85,7 +88,7 @@ custom_css = """
     .icon-card:hover {
         transform: translateY(-4px);
         box-shadow: 0 15px 30px -12px rgba(0,0,0,0.1);
-        border-color: rgba(212, 175, 55, 0.4);
+        border-color: rgba(212, 175, 55, 0.5);
         background: #fefef7;
     }
     
@@ -129,35 +132,37 @@ custom_css = """
     .social-container {
         display: flex;
         justify-content: flex-end;
-        gap: 1rem;
+        gap: 1.2rem;
         margin: 2rem 1rem 1rem 1rem;
         padding: 0.5rem 0;
         flex-wrap: wrap;
     }
     
-    /* Ikon bulat */
+    /* Ikon bulat - perbaikan tampilan */
     .social-icon {
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        width: 48px;
-        height: 48px;
+        width: 52px;
+        height: 52px;
         border-radius: 50%;
         background: #ffffff;
         color: #2c3e50;
         text-decoration: none;
-        font-size: 1.5rem;
+        font-size: 1.6rem;
         transition: all 0.25s ease;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-        border: 1px solid rgba(212, 175, 55, 0.2);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        border: 1px solid rgba(212, 175, 55, 0.3);
     }
-    
+    .social-icon i {
+        line-height: 1;
+    }
     .social-icon:hover {
-        transform: translateY(-3px);
+        transform: translateY(-4px);
         background: #d4af37;
         color: white;
         border-color: #d4af37;
-        box-shadow: 0 8px 20px rgba(212, 175, 55, 0.2);
+        box-shadow: 0 10px 20px rgba(212, 175, 55, 0.25);
     }
     
     /* Tooltip label saat hover */
@@ -167,30 +172,35 @@ custom_css = """
     .social-icon:hover::after {
         content: attr(title);
         position: absolute;
-        bottom: -30px;
+        bottom: -34px;
         left: 50%;
         transform: translateX(-50%);
         background: #1e2a3a;
         color: white;
-        font-size: 0.7rem;
-        padding: 4px 8px;
-        border-radius: 20px;
+        font-size: 0.75rem;
+        font-weight: 500;
+        padding: 4px 10px;
+        border-radius: 30px;
         white-space: nowrap;
         font-family: 'Inter', sans-serif;
-        font-weight: 400;
         pointer-events: none;
         z-index: 10;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.2);
     }
     
     @media (max-width: 768px) {
         .social-icon {
-            width: 40px;
-            height: 40px;
-            font-size: 1.2rem;
+            width: 44px;
+            height: 44px;
+            font-size: 1.4rem;
         }
         .social-container {
             justify-content: center;
-            gap: 0.8rem;
+            gap: 1rem;
+        }
+        .social-icon:hover::after {
+            font-size: 0.7rem;
+            bottom: -30px;
         }
     }
     
@@ -212,9 +222,6 @@ custom_css = """
 st.markdown(custom_css, unsafe_allow_html=True)
 
 # ==================== DATA IKON  ====================
-# Struktur: setiap kolom berisi list of dict
-# Setiap dict: {"label": "Nama Ikon", "icon": "fa-solid fa-...", "url": "https://..."}
-
 kolom1_data = [
     {"label": "ResPat BUAYA", "icon": "fa-solid fa-tree", "url": "https://lookerstudio.google.com/s/l64DGDDeTIQ"},
     {"label": "LokaBeOn", "icon": "fa-solid fa-tree", "url": "https://webgislokabeon2026.nonha-sdoc.workers.dev/"},
@@ -244,12 +251,9 @@ kolom3_data = [
     {"label": "Emergency Response", "icon": "fa-solid fa-life-ring", "url": "https://example.com/emergency"},
 ]
 
-# ==================== DATA MEDIA SOSIAL (MUDAH DIUPDATE) ====================
-# Format: {"label": "Nama", "icon": "fab fa-...", "url": "https://..."}
-# Untuk hotline WhatsApp, gunakan icon "fab fa-whatsapp" dan url wa.me/...
-# Urutan akan tampil dari kanan ke kiri (yang terakhir di list akan muncul paling kanan)
+# ==================== DATA MEDIA SOSIAL ====================
 social_media = [
-    {"label": "Hotline WA", "icon": "fab fa-whatsapp", "url": "https://wa.me/628116666642"},  # Ganti dengan nomor WhatsApp Anda
+    {"label": "Hotline WA", "icon": "fab fa-whatsapp", "url": "https://wa.me/628116666642"},
     {"label": "Instagram", "icon": "fab fa-instagram", "url": "https://www.instagram.com/lokapkpekanbaru?igsh=YTN3OGRvd3ZrZXF1"},
     {"label": "Facebook", "icon": "fab fa-facebook-f", "url": "https://www.facebook.com/LPKPekanbaru.477456"},
     {"label": "TikTok", "icon": "fab fa-tiktok", "url": "https://www.tiktok.com/@lokapkpekanbaru?_r=1&_t=ZS-966OrjUjiPx"},
@@ -260,20 +264,16 @@ social_media = [
 
 # ==================== FUNGSI RENDER KOLOM ====================
 def render_column(icon_list, column_title):
-    """Menerima list ikon dan judul kolom, lalu render HTML/CSS melalui markdown"""
-    # Judul kolom dengan style kustom
     st.markdown(f"""
         <div style="text-align: center;">
             <div class="col-title">{column_title}</div>
         </div>
     """, unsafe_allow_html=True)
     
-    # Looping setiap ikon
     for item in icon_list:
         label = item["label"]
         icon_class = item["icon"]
         url = item["url"]
-        
         card_html = f"""
         <div class="icon-card">
             <a href="{url}" target="_blank" rel="noopener noreferrer">
@@ -286,22 +286,23 @@ def render_column(icon_list, column_title):
 
 # ==================== FUNGSI RENDER MEDIA SOSIAL ====================
 def render_social_media(social_list):
-    """Menampilkan ikon media sosial bulat secara horizontal dari kanan ke kiri"""
+    """Menampilkan ikon media sosial bulat secara horizontal dari kanan ke kiri."""
     # Balik urutan agar yang pertama di list (Hotline WA) tampil paling kanan
     social_list_reversed = list(reversed(social_list))
     
     html_parts = ['<div class="social-container">']
     for soc in social_list_reversed:
+        # Escape double quotes di URL (meski sebenarnya aman, ini untuk jaga-jaga)
+        url = soc["url"].replace('"', '&quot;')
         html_parts.append(f'''
-            <a href="{soc["url"]}" target="_blank" rel="noopener noreferrer" class="social-icon" title="{soc["label"]}">
-                <i class="{soc["icon"]}"></i>
+            <a href="{url}" target="_blank" rel="noopener noreferrer" class="social-icon" title="{soc['label']}">
+                <i class="{soc['icon']}"></i>
             </a>
         ''')
     html_parts.append('</div>')
     st.markdown(''.join(html_parts), unsafe_allow_html=True)
 
 # ==================== TAMPILAN UTAMA ====================
-# Header
 st.markdown("""
     <div class="dashboard-title">
         <h1>🌊 Loka Pengelolaan Kelautan Pekanbaru</h1>
@@ -309,7 +310,6 @@ st.markdown("""
     </div>
 """, unsafe_allow_html=True)
 
-# Membuat 3 kolom dengan rasio lebar seimbang
 col1, col2, col3 = st.columns(3, gap="large")
 
 with col1:
@@ -330,7 +330,7 @@ with col3:
         render_column(kolom3_data, "⚙️ Dukman (Dukungan Manajemen)")
         st.markdown('</div>', unsafe_allow_html=True)
 
-# ==================== MEDIA SOSIAL (SEBELUM FOOTER) ====================
+# ==================== MEDIA SOSIAL ====================
 render_social_media(social_media)
 
 # ==================== FOOTER ====================
