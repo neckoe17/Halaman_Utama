@@ -285,7 +285,7 @@ def render_social_media(social_list):
 # ==================== TAMPILAN UTAMA ====================
 st.markdown("""
     <div class="dashboard-title">
-        <h1>🌊 Loka Pengelolaan Kelautan Pekanbaru</h1>
+        <h1>Loka Pengelolaan Kelautan Pekanbaru</h1>
         <p>Dashboard terintegrasi untuk perlindungan, pemanfaatan, dan dukungan manajemen</p>
     </div>
 """, unsafe_allow_html=True)
@@ -295,19 +295,19 @@ col1, col2, col3 = st.columns(3, gap="large")
 with col1:
     with st.container():
         st.markdown('<div class="section-card">', unsafe_allow_html=True)
-        render_column(kolom1_data, "🛡️ Perlindungan & Pelestarian")
+        render_column(kolom1_data, "Perlindungan & Pelestarian")
         st.markdown('</div>', unsafe_allow_html=True)
 
 with col2:
     with st.container():
         st.markdown('<div class="section-card">', unsafe_allow_html=True)
-        render_column(kolom2_data, "🐟 Pemanfaatan & Jenis Ikan")
+        render_column(kolom2_data, "Pemanfaatan & Jenis Ikan")
         st.markdown('</div>', unsafe_allow_html=True)
 
 with col3:
     with st.container():
         st.markdown('<div class="section-card">', unsafe_allow_html=True)
-        render_column(kolom3_data, "⚙️ Dukman (Dukungan Manajemen)")
+        render_column(kolom3_data, "Dukman (Dukungan Manajemen)")
         st.markdown('</div>', unsafe_allow_html=True)
 
 render_social_media(social_media)
