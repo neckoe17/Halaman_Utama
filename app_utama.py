@@ -20,7 +20,7 @@ if background_image_path.exists():
 else:
     st.warning("File MRAP12.jpg tidak ditemukan. Gunakan background default.")
 
-# ==================== CSS KUSTOM (dengan blur keseluruhan background) ====================
+# ==================== CSS KUSTOM ====================
 if background_base64:
     bg_style = f"url('data:image/jpeg;base64,{background_base64}')"
 else:
@@ -28,21 +28,19 @@ else:
 
 custom_css = f"""
 <style>
-    /* Reset & Font */
     @import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600&display=swap');
     
     html, body, [class*="css"] {{
         font-family: 'Inter', sans-serif;
     }}
     
-    /* ----- BACKGROUND GAMBAR dengan BLUR TOTAL (pseudo-element) ----- */
+    /* Background dengan blur total menggunakan pseudo-element */
     .stApp {{
         position: relative;
         background: {bg_style} no-repeat center center fixed;
         background-size: cover;
     }}
     
-    /* Lapisan blur dan redup untuk background saja */
     .stApp::before {{
         content: "";
         position: fixed;
@@ -50,22 +48,19 @@ custom_css = f"""
         left: 0;
         width: 100%;
         height: 100%;
-        backdrop-filter: blur(12px);   /* tingkat blur, bisa disesuaikan */
-        background: rgba(0, 0, 0, 0.4); /* gelap transparan untuk efek mewah */
+        backdrop-filter: blur(12px);
+        background: rgba(0, 0, 0, 0.4);
         z-index: 0;
-        pointer-events: none;           /* agar tidak mengganggu klik */
+        pointer-events: none;
     }}
     
-    /* Semua konten utama harus berada di atas pseudo-element */
+    /* Konten di atas blur */
     .main > div {{
         position: relative;
         z-index: 1;
     }}
     
-    /* Hapus overlay lama di .main (sudah tidak perlu) */
-    /* .main { background: rgba(0, 0, 0, 0.5); backdrop-filter: blur(8px); } */
-    
-    /* Judul utama - mewah */
+    /* Judul utama */
     .dashboard-title {{
         text-align: center;
         padding: 1rem 0 1rem 0;
@@ -182,6 +177,7 @@ custom_css = f"""
         font-size: 1.6rem;
         transition: all 0.25s ease;
         border: 1px solid rgba(212,175,55,0.5);
+        position: relative;
     }}
     .social-icon:hover {{
         transform: translateY(-4px);
@@ -202,9 +198,6 @@ custom_css = f"""
         white-space: nowrap;
         font-family: 'Inter', sans-serif;
         pointer-events: none;
-    }}
-    .social-icon {{
-        position: relative;
     }}
     @media (max-width: 768px) {{
         .social-icon {{ width: 44px; height: 44px; font-size: 1.4rem; }}
